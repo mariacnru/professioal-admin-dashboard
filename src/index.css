@@ -55,3 +55,16 @@ body {
 
   --breakpoints-xs: 480px;
 }
+
+.sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 20px;
+}
