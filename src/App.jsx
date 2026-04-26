@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import { RouterProvider, ScrollRestoration } from "react-router";
+import router from "./router";
 
 function App() {
   return (
-    <div>App</div>
-  )
+    <RouterProvider router={router}>
+      <ScrollRestoration />
+    </RouterProvider>
+  );
 }
 
-export default App
+export default App;
