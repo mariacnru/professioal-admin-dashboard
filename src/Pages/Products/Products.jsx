@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Header from "./components/Header";
 import SimpleTable from "./components/DynamicTable";
 import { RiSearch2Line } from "react-icons/ri";
 
 function Products() {
+  const [searchInput, setSearchInput] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState(""); // مقدار نهایی برای فیلتر
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8);
 
@@ -221,13 +223,33 @@ function Products() {
     },
   ];
 
+  // فیلتر کردن محصولات , search input
+
+  const filteredData = useMemo(() => {
+    const term = debouncedSearch.trim().toLowerCase();
+    if (!term) return tableData;
+
+    return tableData.filter((p) => p.product.toLowerCase().includes(term));
+  }, [debouncedSearch]); // اینجا فقط وقتی debouncedSearch عوض شد اجرا میشه
+
+  // 2. بازنشانی صفحه به 1 هنگام جستجو
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearch(searchInput);
+      setCurrentPage(1); // وقتی جستجو نهایی شد، برگرد به صفحه ۱
+    }, 2000);
+
+    // اگر کاربر دوباره تایپ کرد، تایمر قبلی پاک میشه
+    return () => clearTimeout(handler);
+  }, [searchInput]);
+
   // محاسبه داده‌های صفحه فعلی
-  const indexOfLastItem = currentPage * itemsPerPage; // 1 * 5 = 5
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage; // 5 - 5 = 0
-  const currentItems = tableData.slice(indexOfFirstItem, indexOfLastItem);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
   // محاسبه تعداد کل صفحات
-  const totalPages = Math.ceil(tableData.length / itemsPerPage); // 20 / 5 = 4
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage); // 20 / 5 = 4
 
   // توابع تغییر صفحه
   const handleNextPage = () => {
@@ -278,6 +300,9 @@ function Products() {
               type="text"
               placeholder="جستجو..."
               className="outline-0 text-sm"
+              value={searchInput}
+              // حالا نیازی به onKeyUp نیست چون useMemo خودش گوش میده
+              onChange={(e) => setSearchInput(e.target.value)}
             />
           </label>
         </div>
