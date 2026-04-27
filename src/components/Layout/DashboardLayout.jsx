@@ -5,10 +5,10 @@ import TopBar from "../Common/TopBar/TopBar";
 
 function DashboardLayout() {
   return (
-    <div className="relative">
-      <TopBar />  
-      <section className="flex">
-        <SideBar />
+    <div className="relative flex min-h-screen">
+      <SideBar />
+      <section className="w-full flex flex-col">
+        <TopBar />
         <main className="w-full">
           <Outlet />
         </main>

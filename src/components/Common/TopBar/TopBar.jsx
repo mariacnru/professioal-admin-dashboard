@@ -3,7 +3,7 @@ import { RiNotification2Line, RiSearch2Line } from "react-icons/ri";
 
 function TopBar() {
   return (
-    <div className="bg-gray-900 text-white py-2 px-5 w-full flex justify-between items-center">
+    <div className="sticky top-0 bg-gray-900 text-white py-2 px-5 w-full flex justify-between items-center">
       <div className="flex items-center gap-4">
         <RiSearch2Line />
         <input

@@ -1,11 +1,310 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
+import SimpleTable from "./components/DynamicTable";
+import { RiSearch2Line } from "react-icons/ri";
 
 function Products() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(8);
+
+  const columns = [
+    { id: "id", title: "آیدی" },
+    { id: "product", title: "محصول" },
+    { id: "inventory", title: "موجودی" },
+    { id: "color", title: "رنگ" },
+    { id: "price", title: "قیمت" },
+    { id: "rating", title: "امتیاز" },
+    { id: "action", title: "اکشن" },
+  ];
+
+  const tableData = [
+    {
+      id: 1,
+      product: "تی‌شرت نخی",
+      type: "t-shirt",
+      color: "سفید",
+      price: "450,000",
+      discount: "10%",
+      rating: 4.5,
+      inventory: 15,
+    },
+    {
+      id: 2,
+      product: "هودی اورسایز",
+      type: "hoodie",
+      color: "مشکی",
+      price: "850,000",
+      discount: "0%",
+      rating: 4.8,
+      inventory: 8,
+    },
+    {
+      id: 3,
+      product: "تی‌شرت یقه گرد",
+      type: "t-shirt",
+      color: "طوسی",
+      price: "390,000",
+      discount: "5%",
+      rating: 4.2,
+      inventory: 20,
+    },
+    {
+      id: 4,
+      product: "هودی زیپ‌دار",
+      type: "hoodie",
+      color: "سرمه‌ای",
+      price: "950,000",
+      discount: "15%",
+      rating: 4.7,
+      inventory: 5,
+    },
+    {
+      id: 5,
+      product: "تی‌شرت گرافیکی",
+      type: "t-shirt",
+      color: "قرمز",
+      price: "520,000",
+      discount: "0%",
+      rating: 4.0,
+      inventory: 12,
+    },
+    {
+      id: 6,
+      product: "هودی کرک‌دار",
+      type: "hoodie",
+      color: "سبز یشمی",
+      price: "1,100,000",
+      discount: "20%",
+      rating: 4.9,
+      inventory: 3,
+    },
+    {
+      id: 7,
+      product: "تی‌شرت ورزشی",
+      type: "t-shirt",
+      color: "آبی",
+      price: "600,000",
+      discount: "10%",
+      rating: 4.3,
+      inventory: 25,
+    },
+    {
+      id: 8,
+      product: "هودی کلاه‌دار",
+      type: "hoodie",
+      color: "زرد",
+      price: "780,000",
+      discount: "5%",
+      rating: 4.4,
+      inventory: 10,
+    },
+    {
+      id: 9,
+      product: "تی‌شرت آستین بلند",
+      type: "t-shirt",
+      color: "مشکی",
+      price: "480,000",
+      discount: "0%",
+      rating: 4.1,
+      inventory: 18,
+    },
+    {
+      id: 10,
+      product: "هودی بدون آستین",
+      type: "hoodie",
+      color: "طوسی تیره",
+      price: "650,000",
+      discount: "0%",
+      rating: 3.9,
+      inventory: 7,
+    },
+
+    {
+      id: 11,
+      product: "تی‌شرت لانگ",
+      type: "t-shirt",
+      color: "کرم",
+      price: "550,000",
+      discount: "10%",
+      rating: 4.6,
+      inventory: 14,
+    },
+    {
+      id: 12,
+      product: "هودی فانتزی",
+      type: "hoodie",
+      color: "بنفش",
+      price: "900,000",
+      discount: "5%",
+      rating: 4.7,
+      inventory: 6,
+    },
+    {
+      id: 13,
+      product: "تی‌شرت بیسیک",
+      type: "t-shirt",
+      color: "نارنجی",
+      price: "350,000",
+      discount: "0%",
+      rating: 4.0,
+      inventory: 30,
+    },
+    {
+      id: 14,
+      product: "هودی اسپرت",
+      type: "hoodie",
+      color: "سفید",
+      price: "820,000",
+      discount: "10%",
+      rating: 4.5,
+      inventory: 9,
+    },
+    {
+      id: 15,
+      product: "تی‌شرت نخی طرح‌دار",
+      type: "t-shirt",
+      color: "قهوه‌ای",
+      price: "420,000",
+      discount: "0%",
+      rating: 4.2,
+      inventory: 22,
+    },
+    {
+      id: 16,
+      product: "هودی بافت",
+      type: "hoodie",
+      color: "زرشکی",
+      price: "1,200,000",
+      discount: "25%",
+      rating: 4.8,
+      inventory: 2,
+    },
+    {
+      id: 17,
+      product: "تی‌شرت رینگر",
+      type: "t-shirt",
+      color: "صورتی",
+      price: "490,000",
+      discount: "5%",
+      rating: 4.3,
+      inventory: 11,
+    },
+    {
+      id: 18,
+      product: "هودی اورجینال",
+      type: "hoodie",
+      color: "مشکی",
+      price: "1,500,000",
+      discount: "0%",
+      rating: 5.0,
+      inventory: 4,
+    },
+    {
+      id: 19,
+      product: "تی‌شرت یقه هفت",
+      type: "t-shirt",
+      color: "خاکستری",
+      price: "380,000",
+      discount: "0%",
+      rating: 4.1,
+      inventory: 19,
+    },
+    {
+      id: 20,
+      product: "هودی پشمی",
+      type: "hoodie",
+      color: "سرمه‌ای",
+      price: "1,050,000",
+      discount: "10%",
+      rating: 4.6,
+      inventory: 7,
+    },
+  ];
+
+  // محاسبه داده‌های صفحه فعلی
+  const indexOfLastItem = currentPage * itemsPerPage; // 1 * 5 = 5
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage; // 5 - 5 = 0
+  const currentItems = tableData.slice(indexOfFirstItem, indexOfLastItem);
+
+  // محاسبه تعداد کل صفحات
+  const totalPages = Math.ceil(tableData.length / itemsPerPage); // 20 / 5 = 4
+
+  // توابع تغییر صفحه
+  const handleNextPage = () => {
+    setCurrentPage((prev) => prev + 1);
+
+    //  این تابع currentPage را یکی افزایش می‌دهد، اما تضمین می‌کند که از حداکثر تعداد صفحات ( totalPages ) بیشتر نشود.
+    // setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prev) => prev - 1);
+
+    //  این تابع currentPage را یکی کاهش می‌دهد، اما تضمین می‌کند که از صفحه اول (شماره 1) کمتر نشود.
+    // setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const generatePageButtons = () => {
+    const buttons = [];
+    for (let i = 1; i <= totalPages; i++) {
+      buttons.push(
+        <button
+          key={i}
+          onClick={() => handlePageChange(i)}
+          className={`px-3 py-1 rounded ${currentPage === i ? "bg-gray-700 text-white" : "bg-gray-200"}`}
+        >
+          {i}
+        </button>,
+      );
+    }
+    return buttons;
+  };
+
   return (
-    <>
+    <div className="m-10">
       <Header />
-    </>
+
+      <div className="bg-white rounded-xl">
+        <div className="p-5">
+          <label className="flex items-center gap-2 w-2xs border border-gray-300 rounded-sm p-2">
+            <span className="text-gray-500">
+              <RiSearch2Line />
+            </span>
+            <input
+              type="text"
+              placeholder="جستجو..."
+              className="outline-0 text-sm"
+            />
+          </label>
+        </div>
+        <SimpleTable columns={columns} data={currentItems} />
+
+        {/* کنترل‌های Pagination */}
+        <div className="flex justify-center mt-4 space-x-2 pb-5">
+          <button
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+            className={`px-3 py-1 rounded ${currentPage === 1 ? "bg-gray-300 cursor-not-allowed" : "bg-blue-500 text-white cursor-pointer"}`}
+          >
+            قبلی
+          </button>
+
+          {generatePageButtons()}
+
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className={`px-3 py-1 rounded ${currentPage === totalPages ? "bg-gray-300 cursor-not-allowed" : "bg-blue-500 text-white cursor-pointer"}`}
+          >
+            بعدی
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 

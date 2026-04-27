@@ -10,7 +10,7 @@ import {
 
 function SideBar() {
   return (
-    <div className="sidebar bg-(--deep-Blue) text-white p-5 h-screen overflow-y-scroll w-78 flex flex-col items-center">
+    <div className="sidebar sticky top-0 bg-(--deep-Blue) text-white p-5 h-screen overflow-y-scroll w-78 flex flex-col items-center">
       <ul>
         {sidebarData.map((item) => (
           <ListItem
