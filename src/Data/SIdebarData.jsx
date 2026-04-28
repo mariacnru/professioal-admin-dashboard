@@ -19,7 +19,7 @@ const sidebarData = [
   { id: 6, title: "گزارشات", icon: RiBarChartLine, to: "*" },
   { id: 7, title: "کوپن ها", icon: RiStarLine, to: "*" },
   { id: 8, title: "اینباکس", icon: RiMailLine, to: "*" },
-  { id: 9, title: "اضافه کردن محصول", icon: RiAddLine, to: "*" },
+  { id: 9, title: "اضافه کردن محصول", icon: RiAddLine, to: "createNewProduct" },
 ];
 
 export default sidebarData;

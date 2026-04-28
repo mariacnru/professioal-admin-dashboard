@@ -1,9 +1,17 @@
 import React from "react";
-import { RiNotification2Line, RiSearch2Line } from "react-icons/ri";
+import {
+  RiMenu2Line,
+  RiNotification2Line,
+  RiSearch2Line,
+} from "react-icons/ri";
 
-function TopBar() {
+function TopBar({ flag, setFlag }) {
   return (
-    <div className="sticky top-0 bg-gray-900 text-white py-2 px-5 w-full flex justify-between items-center">
+    <div className="z-20 sticky top-0 bg-gray-900 text-white py-2 px-5 w-full flex justify-between items-center">
+      <div onClick={() => setFlag(!flag)} className="rotate-180">
+        <RiMenu2Line size={18} />
+      </div>
+
       <div className="flex items-center gap-4">
         <RiSearch2Line />
         <input

@@ -5,6 +5,7 @@ import Products from "./Pages/Products/Products";
 import Users from "./Pages/Users/Users";
 import Categiries from "./Pages/Categories/Categories";
 import NotFoundPage from "./Pages/NotFoundPage/NotFoundPage";
+import CreateNewProduct from "./Pages/CreateNewProduct/CreateNewProduct";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
       { path: "users", element: <Users /> },
       { path: "products", element: <Products /> },
       { path: "categiries", element: <Categiries /> },
+      { path: "createNewProduct", element: <CreateNewProduct /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },

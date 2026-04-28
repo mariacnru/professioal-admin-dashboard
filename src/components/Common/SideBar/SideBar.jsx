@@ -8,9 +8,11 @@ import {
   RiUserLine,
 } from "react-icons/ri";
 
-function SideBar() {
+function SideBar({ flag, setFlag }) {
   return (
-    <div className="sidebar sticky top-0 bg-(--deep-Blue) text-white p-5 h-screen overflow-y-scroll w-78 flex flex-col items-center">
+    <div
+      className={`sidebar ${flag ? "right-0" : "-right-70"} transition-all z-20`}
+    >
       <ul>
         {sidebarData.map((item) => (
           <ListItem
@@ -18,6 +20,7 @@ function SideBar() {
             icon={item.icon}
             title={item.title}
             to={item.to}
+            setFlag={setFlag}
           />
         ))}
       </ul>

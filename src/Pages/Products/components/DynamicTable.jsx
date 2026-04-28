@@ -2,8 +2,6 @@ import React from "react";
 import { RiDeleteBinLine, RiEditLine } from "react-icons/ri";
 
 function DynamicTable({ columns, data }) {
-
-  
   function getRandomHexColor() {
     const randomColor = Math.floor(Math.random() * 16777215).toString(16);
     return `#${randomColor.padStart(6, "0")}`; // اطمینان از اینکه کد همیشه ۶ رقمی است
@@ -12,7 +10,7 @@ function DynamicTable({ columns, data }) {
   return (
     <table className="w-full *:text-sm">
       <thead>
-        <tr className="*:p-5 *:text-start *:text-gray-500">
+        <tr className="*:p-5 *:text-start *:text-gray-500 border-b-2 border-gray-200">
           {columns.map((item) => (
             <td key={item.id}>{item.title}</td>
           ))}

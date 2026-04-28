@@ -1,9 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router";
 
-function ListItem({ icon: Icon, title, to: href }) {
+function ListItem({ icon: Icon, title, to: href, setFlag }) {
   return (
     <NavLink
+      onClick={() => setFlag(false)}
       to={href} // اگر 'to' تعریف نشده باشد، به هش روت می‌شود
       className={({ isActive }) =>
         isActive

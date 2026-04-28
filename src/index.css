@@ -39,6 +39,7 @@ body {
   --color-brown-600: #967259;
   --color-brown-900: #624823;
   --color-green-btn: #0f948a;
+  --color-deep-blue: #1e2753;
 
   --shdow-normal: 0px 1px 10px rgba(0, 0, 0, 0.05);
 
@@ -54,6 +55,10 @@ body {
   --tracking-tightest: -0.065rem;
 
   --breakpoints-xs: 480px;
+}
+
+.sidebar {
+  @apply fixed top-14 bg-deep-blue text-white p-5 h-screen overflow-y-scroll w-70 flex flex-col items-center;
 }
 
 .sidebar::-webkit-scrollbar {

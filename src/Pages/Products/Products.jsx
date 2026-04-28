@@ -254,16 +254,10 @@ function Products() {
   // توابع تغییر صفحه
   const handleNextPage = () => {
     setCurrentPage((prev) => prev + 1);
-
-    //  این تابع currentPage را یکی افزایش می‌دهد، اما تضمین می‌کند که از حداکثر تعداد صفحات ( totalPages ) بیشتر نشود.
-    // setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   };
 
   const handlePrevPage = () => {
     setCurrentPage((prev) => prev - 1);
-
-    //  این تابع currentPage را یکی کاهش می‌دهد، اما تضمین می‌کند که از صفحه اول (شماره 1) کمتر نشود.
-    // setCurrentPage((prev) => Math.max(prev - 1, 1));
   };
 
   const handlePageChange = (pageNumber) => {
