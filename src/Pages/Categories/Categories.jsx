@@ -54,7 +54,7 @@ function Categories() {
         افزودن یا حذف دسته بندی
       </h3>
 
-      <div className="mt-20 flex gap-10">
+      <div className="mt-20 flex flex-wrap md:flex-nowrap gap-10 *:mx-auto">
         <div className="w-120">
           <div className="bg-white rounded-md p-5">
             <h4 className="font-MorabbaMedium mb-5">اطلاعات دسته بندی</h4>
@@ -106,7 +106,7 @@ function Categories() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-2 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 w-full">
           {CategoriesData.map((item) => (
             <DeletCategorieCard
               key={item.id}
