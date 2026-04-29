@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import SimpleTable from "./components/DynamicTable";
 import { RiSearch2Line } from "react-icons/ri";
 import productsData from "../../Data/productsData";
+import EditProductModal from "./components/EditProductModal";
 
 function Products() {
   const [products, setProducts] = useState(productsData);
@@ -63,6 +64,10 @@ function Products() {
     return buttons;
   };
 
+  const deleteProduct = (id) => {
+    setProducts((prev) => prev.filter((item) => item.id !== id));
+  };
+
   return (
     <div className="m-10">
       <Header />
@@ -88,7 +93,11 @@ function Products() {
             />
           </label>
         </div>
-        <SimpleTable columns={columns} data={currentItems} />
+        <SimpleTable
+          columns={columns}
+          data={currentItems}
+          onDelete={deleteProduct}
+        />
 
         {/* کنترل‌های Pagination */}
         <div className="flex justify-center mt-4 space-x-2 pb-5">
@@ -112,7 +121,7 @@ function Products() {
         </div>
       </div>
 
-      
+      <EditProductModal />
     </div>
   );
 }
