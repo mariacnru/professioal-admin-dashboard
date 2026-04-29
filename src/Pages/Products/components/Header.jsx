@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router";
 
 function Header() {
   return (
@@ -8,9 +9,12 @@ function Header() {
         <button className="text-blue-500 bg-white py-1.5 px-4 text-sm rounded-sm border border-gray-300 hover:shadow-lg shadow-blue-200 transition-shadow cursor-pointer">
           چاپ
         </button>
-        <button className="bg-blue-500 text-white py-1.5 px-2 text-sm rounded-sm hover:shadow-lg shadow-blue-200 transition-shadow cursor-pointer">
+        <NavLink
+          to={"/createNewProduct"}
+          className="bg-blue-500 text-white py-1.5 px-2 text-sm rounded-sm hover:shadow-lg shadow-blue-200 transition-shadow cursor-pointer"
+        >
           + اضافه کردن محصول
-        </button>
+        </NavLink>
       </div>
     </div>
   );

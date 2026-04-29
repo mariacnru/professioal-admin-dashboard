@@ -17,9 +17,9 @@ const router = createBrowserRouter([
       { path: "products", element: <Products /> },
       { path: "categiries", element: <Categiries /> },
       { path: "createNewProduct", element: <CreateNewProduct /> },
-      { path: "*", element: <NotFoundPage /> },
     ],
   },
+  { path: "*", element: <NotFoundPage /> },
 ]);
 
 export default router;

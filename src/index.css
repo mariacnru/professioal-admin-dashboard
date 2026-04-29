@@ -33,6 +33,10 @@ body {
   @apply font-Dana bg-gray-100;
 }
 
+body::selection {
+  background-color: #7bf1a8;
+}
+
 @theme {
   --color-brown-100: #ece0d1;
   --color-brown-300: #dbc1ac;

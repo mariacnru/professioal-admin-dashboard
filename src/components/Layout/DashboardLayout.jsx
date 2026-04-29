@@ -11,7 +11,7 @@ function DashboardLayout() {
       <SideBar flag={flag} setFlag={setFlag} />
       <div
         onClick={() => setFlag(false)}
-        className={`absolute top-0 w-full h-screen bg-black/50 z-10 ${flag ? "inline" : "hidden"}`}
+        className={`absolute top-0 w-full h-full bg-black/50 z-10 ${flag ? "inline" : "hidden"}`}
       ></div>
 
       <section className="w-full flex flex-col">
