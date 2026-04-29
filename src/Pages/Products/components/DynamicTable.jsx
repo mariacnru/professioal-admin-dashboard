@@ -1,7 +1,7 @@
 import React from "react";
 import { RiDeleteBinLine, RiEditLine } from "react-icons/ri";
 
-function DynamicTable({ columns, data, onDelete }) {
+function DynamicTable({ columns, data, onDelete, setModal }) {
   function getRandomHexColor() {
     const randomColor = Math.floor(Math.random() * 16777215).toString(16);
     return `#${randomColor.padStart(6, "0")}`; // اطمینان از اینکه کد همیشه ۶ رقمی است
@@ -36,7 +36,10 @@ function DynamicTable({ columns, data, onDelete }) {
             <td>{item.price}</td>
             <td>{item.rating}</td>
             <td className="space-x-2">
-              <button className="text-blue-500 border border-gray-300 hover:bg-gray-100 p-2 rounded-sm transition-colors cursor-pointer">
+              <button
+                onClick={() => setModal(true)}
+                className="text-blue-500 border border-gray-300 hover:bg-gray-100 p-2 rounded-sm transition-colors cursor-pointer"
+              >
                 <RiEditLine />
               </button>
               <button

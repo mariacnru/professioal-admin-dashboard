@@ -11,6 +11,8 @@ function Products() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8);
 
+  const [modal, setModal] = useState(false);
+
   const columns = [
     { id: "id", title: "آیدی" },
     { id: "product", title: "محصول" },
@@ -69,59 +71,62 @@ function Products() {
   };
 
   return (
-    <div className="m-10">
-      <Header />
+    <div className="relative">
+      <div className="p-10">
+        <Header />
 
-      <div className="bg-white rounded-xl">
-        <div className="p-5">
-          <label className="flex items-center gap-2 w-2xs border border-gray-300 rounded-sm p-2">
-            <span className="text-gray-500">
-              <RiSearch2Line />
-            </span>
-            <input
-              type="text"
-              placeholder="جستجو..."
-              className="outline-0 text-sm"
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  setSubmittedTerm(searchInput); // اعمال جستجو
-                  setCurrentPage(1); // برگشت به صفحه ۱
-                }
-              }}
-            />
-          </label>
-        </div>
-        <SimpleTable
-          columns={columns}
-          data={currentItems}
-          onDelete={deleteProduct}
-        />
+        <div className="bg-white rounded-xl">
+          <div className="p-5">
+            <label className="flex items-center gap-2 w-2xs border border-gray-300 rounded-sm p-2">
+              <span className="text-gray-500">
+                <RiSearch2Line />
+              </span>
+              <input
+                type="text"
+                placeholder="جستجو..."
+                className="outline-0 text-sm"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    setSubmittedTerm(searchInput); // اعمال جستجو
+                    setCurrentPage(1); // برگشت به صفحه ۱
+                  }
+                }}
+              />
+            </label>
+          </div>
+          <SimpleTable
+            columns={columns}
+            data={currentItems}
+            onDelete={deleteProduct}
+            setModal={setModal}
+          />
 
-        {/* کنترل‌های Pagination */}
-        <div className="flex justify-center mt-4 space-x-2 pb-5">
-          <button
-            onClick={handlePrevPage}
-            disabled={currentPage === 1}
-            className={`px-3 py-1 rounded ${currentPage === 1 ? "bg-gray-300 cursor-not-allowed" : "bg-blue-500 text-white cursor-pointer"}`}
-          >
-            قبلی
-          </button>
+          {/* کنترل‌های Pagination */}
+          <div className="flex justify-center mt-4 space-x-2 pb-5">
+            <button
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              className={`px-3 py-1 rounded ${currentPage === 1 ? "bg-gray-300 cursor-not-allowed" : "bg-blue-500 text-white cursor-pointer"}`}
+            >
+              قبلی
+            </button>
 
-          {generatePageButtons()}
+            {generatePageButtons()}
 
-          <button
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-            className={`px-3 py-1 rounded ${currentPage === totalPages ? "bg-gray-300 cursor-not-allowed" : "bg-blue-500 text-white cursor-pointer"}`}
-          >
-            بعدی
-          </button>
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className={`px-3 py-1 rounded ${currentPage === totalPages ? "bg-gray-300 cursor-not-allowed" : "bg-blue-500 text-white cursor-pointer"}`}
+            >
+              بعدی
+            </button>
+          </div>
         </div>
       </div>
 
-      <EditProductModal />
+      <EditProductModal modal={modal} setModal={setModal} />
     </div>
   );
 }
