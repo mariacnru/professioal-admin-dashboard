@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Header from "./components/Header";
 
 function Users() {
   return (
-    <div>Users</div>
-  )
+    <div className="p-10">
+      <Header />
+    </div>
+  );
 }
 
-export default Users
+export default Users;
