@@ -1,74 +1,164 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RiCloseLine } from "react-icons/ri";
 
-function EditProductModal({ modal, setModal }) {
+function EditProductModal({ modal, setModal, id, data, setProducts }) {
   const [title, setTitle] = useState("");
   const [count, setCount] = useState("");
   const [color, setColor] = useState("");
   const [price, setPrice] = useState("");
+  const [type, setType] = useState("");
+  const [rating, setRating] = useState("");
+
+  useEffect(() => {
+    if (id && data) {
+      const productToEdit = data.find((item) => item.id === id);
+
+      if (productToEdit) {
+        setTitle(productToEdit.product);
+        setCount(productToEdit.inventory);
+        setColor(productToEdit.color);
+        setPrice(productToEdit.price);
+        setType(productToEdit.type);
+        setRating(productToEdit.rating);
+      }
+    }
+
+    if (!modal) {
+      setTitle("");
+      setCount("");
+      setColor("");
+      setPrice("");
+      setType("");
+      setRating("");
+    }
+  }, [id, modal, data]);
+
+  const handleSaveClick = () => {
+    const updatedProduct = {
+      id: id,
+      product: title,
+      inventory: count,
+      color: color,
+      price: price,
+      type: type,
+      rating: rating,
+    };
+
+    if (setProducts) {
+      setProducts((prevProducts) =>
+        prevProducts.map((product) =>
+          product.id === id ? updatedProduct : product,
+        ),
+      );
+    }
+    console.log(updatedProduct);
+
+    setModal(false);
+  };
 
   return (
     <div
-      className={`bg-black/50 w-full h-full absolute top-0 pt-15 ${modal ? "inline" : "hidden"}`}
+      className={`bg-black/50 w-full h-full absolute top-0 left-0 z-10 ${modal ? "inline" : "hidden"} p-4`}
     >
-      <div className="space-y-2 w-100 h-fit bg-white mx-auto rounded-lg p-5">
+      <div className="space-y-2 mt-5 w-120 max-w-full h-fit bg-white mx-auto rounded-lg p-5 relative">
         <div
           onClick={() => setModal(false)}
-          className="bg-red-50 flex justify-center p-1 mb-2 rounded-sm hover:bg-red-100 transition-colors cursor-pointer"
+          className="bg-red-50 flex justify-center p-1 rounded-sm hover:bg-red-100 transition-colors cursor-pointer"
         >
           <RiCloseLine size={20} />
         </div>
 
-        <h2 className="font-MorabbaMedium border-x-4 border-gray-900 text-center mb-5">
+        <h2 className="font-MorabbaMedium border-x-4 border-gray-900 text-center mb-5 p-2">
           ویرایش محصول
         </h2>
 
-        <div className="">
-          <span className="text-gray-500 font-MorabbaLight">عنوان</span>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="عنوان را وارد کنید..."
-            className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0 cursor-pointer"
-          />
+        <div className="flex gap-2">
+          <div className="w-full">
+            <div className="space-y-1">
+              <span className="text-gray-500 font-MorabbaLight block">
+                عنوان
+              </span>
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="عنوان را وارد کنید..."
+                className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
+              />
+            </div>
+
+            <div className="space-y-1">
+              <span className="text-gray-500 font-MorabbaLight block">
+                تعداد
+              </span>
+              <input
+                type="text"
+                value={count}
+                onChange={(e) => setCount(e.target.value)}
+                placeholder="تعداد را وارد کنید..."
+                className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
+              />
+            </div>
+
+            <div className="space-y-1">
+              <span className="text-gray-500 font-MorabbaLight block">رنگ</span>
+              <input
+                type="text"
+                value={color}
+                onChange={(e) => setColor(e.target.value)}
+                placeholder="رنگ را وارد کنید..."
+                className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
+              />
+            </div>
+          </div>
+
+          <div className="w-full">
+            <div className="space-y-1">
+              <span className="text-gray-500 font-MorabbaLight block">
+                قیمت
+              </span>
+              <input
+                type="text"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                placeholder="قیمت را وارد کنید..."
+                className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
+              />
+            </div>
+
+            <div className="space-y-1">
+              <span className="text-gray-500 font-MorabbaLight block">
+                قیمت
+              </span>
+              <input
+                type="text"
+                value={type}
+                onChange={(e) => setType(e.target.value)}
+                placeholder="تایپ را وارد کنید..."
+                className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
+              />
+            </div>
+
+            <div className="space-y-1">
+              <span className="text-gray-500 font-MorabbaLight block">
+                قیمت
+              </span>
+              <input
+                type="text"
+                value={rating}
+                onChange={(e) => setRating(e.target.value)}
+                placeholder="امتیاز را وارد کنید..."
+                className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
+              />
+            </div>
+          </div>
         </div>
 
-        <div className="">
-          <span className="text-gray-500 font-MorabbaLight">تعداد</span>
-          <input
-            type="text"
-            value={count}
-            onChange={(e) => setCount(e.target.value)}
-            placeholder="تعداد را وارد کنید..."
-            className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0 cursor-pointer"
-          />
-        </div>
-
-        <div className="">
-          <span className="text-gray-500 font-MorabbaLight">رنگ</span>
-          <input
-            type="text"
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
-            placeholder="رنگ را وارد کنید..."
-            className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0 cursor-pointer"
-          />
-        </div>
-
-        <div className="">
-          <span className="text-gray-500 font-MorabbaLight">قیمت</span>
-          <input
-            type="text"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            placeholder="قیمت را وارد کنید..."
-            className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0 cursor-pointer"
-          />
-        </div>
-
-        <button className="bg-red-500 text-white w-full text-sm p-2 mt-2 rounded-sm hover:shadow-red-200 hover:shadow-lg transition-shadow cursor-pointer">
-          ادیت محصول
+        <button
+          onClick={handleSaveClick}
+          className="bg-blue-500 text-white w-full text-sm p-2 mt-4 rounded-sm hover:shadow-lg transition-shadow cursor-pointer"
+        >
+          ذخیره تغییرات
         </button>
       </div>
     </div>

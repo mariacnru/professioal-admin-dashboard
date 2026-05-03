@@ -1,17 +1,14 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Header from "./components/Header";
-import SimpleTable from "./components/DynamicTable";
+import DynamicTable from "./components/DynamicTable";
 import { RiSearch2Line } from "react-icons/ri";
 import productsData from "../../Data/productsData";
-import EditProductModal from "./components/EditProductModal";
 
 function Products() {
   const [products, setProducts] = useState(productsData);
   const [searchInput, setSearchInput] = useState(""); // متن داخل input
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8);
-
-  const [modal, setModal] = useState(false);
 
   const columns = [
     { id: "id", title: "آیدی" },
@@ -76,7 +73,7 @@ function Products() {
         <Header />
 
         <div className="bg-white rounded-xl">
-          <div className="p-5">
+          <div className="p-5 flex justify-between items-center">
             <label className="flex items-center gap-2 w-2xs border border-gray-300 rounded-sm p-2">
               <span className="text-gray-500">
                 <RiSearch2Line />
@@ -95,12 +92,16 @@ function Products() {
                 }}
               />
             </label>
+
+            <h3 className="font-MorabbaMedium">
+              تعداد محصولات : {products.length}
+            </h3>
           </div>
-          <SimpleTable
+          <DynamicTable
             columns={columns}
             data={currentItems}
+            setProducts={setProducts}
             onDelete={deleteProduct}
-            setModal={setModal}
           />
 
           {/* کنترل‌های Pagination */}
@@ -125,8 +126,6 @@ function Products() {
           </div>
         </div>
       </div>
-
-      <EditProductModal modal={modal} setModal={setModal} />
     </div>
   );
 }
