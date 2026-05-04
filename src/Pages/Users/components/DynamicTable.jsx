@@ -39,7 +39,10 @@ function DynamicTable({ col, customers, onDlete, data, setCustomers }) {
               <td>{item.spent.toLocaleString()}</td>
               <td className="space-x-2">
                 <button
-                  onClick={() => handleEditClick(item.id)}
+                  onClick={() => {
+                    handleEditClick(item.id);
+                    console.log(item.id);
+                  }}
                   className="text-blue-500 border border-gray-300 hover:bg-gray-100 p-2 rounded-sm transition-colors cursor-pointer"
                 >
                   <RiEditLine />

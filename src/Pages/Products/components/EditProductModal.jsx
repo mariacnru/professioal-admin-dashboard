@@ -58,7 +58,7 @@ function EditProductModal({ modal, setModal, id, data, setProducts }) {
 
   return (
     <div
-      className={`bg-black/50 w-full h-full absolute top-0 left-0 z-10 ${modal ? "inline" : "hidden"} p-4`}
+      className={`bg-black/50 w-full h-full fixed top-13.5 left-0 z-10 ${modal ? "inline" : "hidden"} p-4`}
     >
       <div className="space-y-2 mt-5 w-120 max-w-full h-fit bg-white mx-auto rounded-lg p-5 relative">
         <div

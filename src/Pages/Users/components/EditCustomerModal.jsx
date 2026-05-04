@@ -9,13 +9,15 @@ function EditCustomerModal({ modal, setModal, id, data, setData }) {
 
   useEffect(() => {
     if (id && data) {
-      const productToEdit = data.find((item) => item.id === id);
+      const customerToEdit = data.find((item) => item.id === id);
 
-      if (productToEdit) {
-        setName(productToEdit.product);
-        setLocation(productToEdit.inventory);
-        setOrders(productToEdit.color);
-        setSpent(productToEdit.price);
+      console.log(customerToEdit);
+
+      if (customerToEdit) {
+        setName(customerToEdit.name);
+        setLocation(customerToEdit.location);
+        setOrders(customerToEdit.orders);
+        setSpent(customerToEdit.spent);
       }
     }
 
@@ -43,16 +45,15 @@ function EditCustomerModal({ modal, setModal, id, data, setData }) {
         ),
       );
     }
-    console.log(updatedProduct);
 
     setModal(false);
   };
 
   return (
     <div
-      className={`bg-black/50 w-full h-full absolute top-0 left-0 z-10 ${modal ? "inline" : "hidden"} p-4`}
+      className={`bg-black/50 w-full h-full fixed top-13.5 left-0 z-10 ${modal ? "inline" : "hidden"} p-4`}
     >
-      <div className="space-y-2 mt-5 w-120 max-w-full h-fit bg-white mx-auto rounded-lg p-5 relative">
+      <div className="space-y-2 mt-2.5 w-120 max-w-full h-fit bg-white mx-auto rounded-lg p-5 relative">
         <div
           onClick={() => setModal(false)}
           className="bg-red-50 flex justify-center p-1 rounded-sm hover:bg-red-100 transition-colors cursor-pointer"
@@ -64,85 +65,55 @@ function EditCustomerModal({ modal, setModal, id, data, setData }) {
           ویرایش محصول
         </h2>
 
-        <div className="flex gap-2">
-          <div className="w-full">
-            <div className="space-y-1">
-              <span className="text-gray-500 font-MorabbaLight block">
-                عنوان
-              </span>
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="عنوان را وارد کنید..."
-                className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
-              />
-            </div>
-
-            <div className="space-y-1">
-              <span className="text-gray-500 font-MorabbaLight block">
-                تعداد
-              </span>
-              <input
-                type="text"
-                value={count}
-                onChange={(e) => setCount(e.target.value)}
-                placeholder="تعداد را وارد کنید..."
-                className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
-              />
-            </div>
-
-            <div className="space-y-1">
-              <span className="text-gray-500 font-MorabbaLight block">رنگ</span>
-              <input
-                type="text"
-                value={color}
-                onChange={(e) => setColor(e.target.value)}
-                placeholder="رنگ را وارد کنید..."
-                className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
-              />
-            </div>
+        <div className="w-full space-y-2">
+          <div className="space-y-1">
+            <span className="text-gray-500 font-MorabbaLight block">نام</span>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="نام را وارد کنید..."
+              className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
+            />
           </div>
 
-          <div className="w-full">
-            <div className="space-y-1">
-              <span className="text-gray-500 font-MorabbaLight block">
-                قیمت
-              </span>
-              <input
-                type="text"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                placeholder="قیمت را وارد کنید..."
-                className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
-              />
-            </div>
+          <div className="space-y-1">
+            <span className="text-gray-500 font-MorabbaLight block">
+              موقعیت مکانی
+            </span>
+            <input
+              type="text"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              placeholder=" موقعیت مکانی را وارد کنید..."
+              className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
+            />
+          </div>
 
-            <div className="space-y-1">
-              <span className="text-gray-500 font-MorabbaLight block">
-                قیمت
-              </span>
-              <input
-                type="text"
-                value={type}
-                onChange={(e) => setType(e.target.value)}
-                placeholder="تایپ را وارد کنید..."
-                className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
-              />
-            </div>
+          <div className="space-y-1">
+            <span className="text-gray-500 font-MorabbaLight block">
+              تعداد سفارشات
+            </span>
+            <input
+              type="text"
+              value={orders}
+              onChange={(e) => setOrders(e.target.value)}
+              placeholder="  تعداد سفارشات را وارد کنید..."
+              className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
+            />
+          </div>
 
-            <div className="space-y-1">
-              <span className="text-gray-500 font-MorabbaLight block">
-                قیمت
-              </span>
-              <input
-                type="text"
-                value={rating}
-                onChange={(e) => setRating(e.target.value)}
-                placeholder="امتیاز را وارد کنید..."
-                className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
-              />
-            </div>
+          <div className="space-y-1">
+            <span className="text-gray-500 font-MorabbaLight block">
+              پرداختی
+            </span>
+            <input
+              type="text"
+              value={spent}
+              onChange={(e) => setSpent(e.target.value)}
+              placeholder="پرداختی را وارد کنید..."
+              className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
+            />
           </div>
         </div>
 
