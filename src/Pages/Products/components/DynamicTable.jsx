@@ -2,7 +2,7 @@ import React, { useState } from "react"; // useState را import کنید
 import { RiDeleteBinLine, RiEditLine } from "react-icons/ri";
 import EditProductModal from "./EditProductModal";
 
-function DynamicTable({ columns, data, setProducts, onDelete }) {
+function DynamicTable({ columns, data, setData, onDelete }) {
   const [modal, setModal] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
 
@@ -69,7 +69,7 @@ function DynamicTable({ columns, data, setProducts, onDelete }) {
         setModal={setModal}
         id={selectedItemId}
         data={data}
-        setProducts={setProducts}
+        setData={setData}
       />
     </>
   );

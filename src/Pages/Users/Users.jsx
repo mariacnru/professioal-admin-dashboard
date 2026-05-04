@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
-import DynamicTable from "./DynamicTable";
+import DynamicTable from "./components/DynamicTable";
 import { usersData, culomns } from "../../Data/usersData";
 import { RiSearch2Line } from "react-icons/ri";
 import { useDebounce } from "../../Hooks/useDebounce";
@@ -47,64 +47,68 @@ function Users() {
   };
 
   return (
-    <div className="p-10">
-      <Header />
+    <div className="relative">
+      <div className="p-10">
+        <Header />
 
-      <div className="bg-white rounded-xl">
-        <div className="p-5 flex justify-between items-center">
-          <label className="flex items-center gap-2 w-2xs border border-gray-300 rounded-sm p-2">
-            <span className="text-gray-500">
-              <RiSearch2Line />
+        <div className="bg-white rounded-xl">
+          <div className="p-5 flex justify-between items-center">
+            <label className="flex items-center gap-2 w-2xs border border-gray-300 rounded-sm p-2">
+              <span className="text-gray-500">
+                <RiSearch2Line />
+              </span>
+              <input
+                type="text"
+                placeholder="جستجو..."
+                className="outline-0 text-sm"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+              />
+            </label>
+
+            <h3 className="font-MorabbaMedium">
+              تعداد مشتریان : {customers.length}
+            </h3>
+          </div>
+
+          <DynamicTable
+            col={col}
+            customers={currentItems}
+            onDlete={deleteCustomer}
+            data={customers}
+            setCustomers={setCustomers}
+          />
+
+          {/* Pagination */}
+          <div className="flex justify-center mt-4 space-x-2 pb-5">
+            <button
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              className={`px-3 py-1 rounded ${
+                currentPage === 1
+                  ? "bg-gray-300 cursor-not-allowed"
+                  : "bg-blue-500 text-white cursor-pointer"
+              }`}
+            >
+              قبلی
+            </button>
+
+            <span className="bg-gray-200 w-10 h-10 flex justify-center items-center rounded-sm text-lg">
+              {currentPage}
             </span>
-            <input
-              type="text"
-              placeholder="جستجو..."
-              className="outline-0 text-sm"
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-            />
-          </label>
 
-          <h3 className="font-MorabbaMedium">
-            تعداد مشتریان : {customers.length}
-          </h3>
-        </div>
-
-        <DynamicTable
-          col={col}
-          customers={currentItems}
-          onDlete={deleteCustomer}
-        />
-
-        {/* Pagination */}
-        <div className="flex justify-center mt-4 space-x-2 pb-5">
-          <button
-            onClick={handlePrevPage}
-            disabled={currentPage === 1}
-            className={`px-3 py-1 rounded ${
-              currentPage === 1
-                ? "bg-gray-300 cursor-not-allowed"
-                : "bg-blue-500 text-white cursor-pointer"
-            }`}
-          >
-            قبلی
-          </button>
-
-          <span className="bg-gray-200 w-10 h-10 flex justify-center items-center rounded-sm text-lg">
-            {currentPage}
-          </span>
-
-          <button
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-            className={`px-3 py-1 rounded ${
-              currentPage === totalPages
-                ? "bg-gray-300 cursor-not-allowed"
-                : "bg-blue-500 text-white cursor-pointer"
-            }`}
-          >
-            بعدی
-          </button>
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className={`px-3 py-1 rounded ${
+                currentPage === totalPages
+                  ? "bg-gray-300 cursor-not-allowed"
+                  : "bg-blue-500 text-white cursor-pointer"
+              }`}
+            >
+              بعدی
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -100,7 +100,7 @@ function Products() {
           <DynamicTable
             columns={columns}
             data={currentItems}
-            setProducts={setProducts}
+            setData={setProducts}
             onDelete={deleteProduct}
           />
 

@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { RiDeleteBinLine, RiEditLine } from "react-icons/ri";
+import EditCustomerModal from "./EditCustomerModal";
 
-function DynamicTable({ col, customers, onDlete }) {
+function DynamicTable({ col, customers, onDlete, data, setCustomers }) {
+  const [modal, setModal] = useState(false);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
+
+  const handleEditClick = (itemId) => {
+    setModal(true);
+    setSelectedCustomer(itemId);
+  };
+
   return (
     <>
       <table className="w-full *:text-sm">
@@ -29,7 +38,10 @@ function DynamicTable({ col, customers, onDlete }) {
               <td>{item.orders}</td>
               <td>{item.spent.toLocaleString()}</td>
               <td className="space-x-2">
-                <button className="text-blue-500 border border-gray-300 hover:bg-gray-100 p-2 rounded-sm transition-colors cursor-pointer">
+                <button
+                  onClick={() => handleEditClick(item.id)}
+                  className="text-blue-500 border border-gray-300 hover:bg-gray-100 p-2 rounded-sm transition-colors cursor-pointer"
+                >
                   <RiEditLine />
                 </button>
                 <button
@@ -43,6 +55,14 @@ function DynamicTable({ col, customers, onDlete }) {
           ))}
         </tbody>
       </table>
+
+      <EditCustomerModal
+        modal={modal}
+        setModal={setModal}
+        id={selectedCustomer}
+        data={data}
+        setData={setCustomers}
+      />
     </>
   );
 }
