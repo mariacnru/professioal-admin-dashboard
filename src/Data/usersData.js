@@ -1,4 +1,4 @@
-const data = [
+export const usersData = [
   {
     id: 1,
     name: "امیررضا احمدی",
@@ -141,4 +141,11 @@ const data = [
   },
 ];
 
-export default data;
+export const culomns = [
+  { id: 1, title: "آیدی" },
+  { id: 2, title: "اسم" },
+  { id: 3, title: "موقعیت مکانی" },
+  { id: 4, title: "تعداد سفارشات" },
+  { id: 5, title: "پرداختی" },
+  { id: 6, title: "اکشن" },
+];
