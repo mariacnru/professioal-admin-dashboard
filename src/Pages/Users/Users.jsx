@@ -42,6 +42,10 @@ function Users() {
     setCurrentPage((prev) => prev + 1);
   };
 
+  const deleteCustomer = (id) => {
+    setCustomers((prev) => prev.filter((item) => item.id !== id));
+  };
+
   return (
     <div className="p-10">
       <Header />
