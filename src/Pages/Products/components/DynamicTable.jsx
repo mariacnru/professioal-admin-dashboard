@@ -6,11 +6,6 @@ function DynamicTable({ columns, data, setData, onDelete }) {
   const [modal, setModal] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
 
-  function getRandomHexColor() {
-    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-    return `#${randomColor.padStart(6, "0")}`;
-  }
-
   const handleEditClick = (itemId) => {
     setModal(true);
     setSelectedItemId(itemId);
@@ -33,8 +28,7 @@ function DynamicTable({ columns, data, setData, onDelete }) {
               <td>{item.id}</td>
               <td className="flex items-center gap-5">
                 <div
-                  style={{ backgroundColor: getRandomHexColor() }}
-                  className="w-12 h-12 rounded-sm"
+                  className="w-12 h-12 rounded-sm bg-blue-400"
                 ></div>
                 <div className="*:block">
                   <span>{item.product}</span>

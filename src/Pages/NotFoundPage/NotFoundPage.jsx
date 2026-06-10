@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 function NotFoundPage() {
   return (
@@ -10,12 +11,12 @@ function NotFoundPage() {
             صفحه مورد نظر پیدا نشد
           </h1>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <a
+            <Link to={"/"}
               href="#"
               className="font-DanaDemiBold rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
             >
               خانه
-            </a>
+            </Link>
             <a
               href="#"
               className="font-DanaDemiBold text-sm font-semibold text-white"
