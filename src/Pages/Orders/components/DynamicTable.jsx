@@ -2,7 +2,7 @@ import React, { useState } from "react"; // useState را import کنید
 import { RiDeleteBinLine, RiEditLine } from "react-icons/ri";
 import EditOrderModal from "./EditOrderModal";
 
-function DynamicTable({ columns, data, setData, onDelete }) {
+function DynamicTable({ columns, data, allData, setData, onDelete }) {
   const [modal, setModal] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
 
@@ -27,16 +27,37 @@ function DynamicTable({ columns, data, setData, onDelete }) {
             <tr key={item.id} className="*:px-5 *:py-2">
               <td>{item.id}</td>
               <td className="flex items-center gap-5">
-                <div className="w-12 h-12 rounded-sm bg-blue-400"></div>
                 <div className="*:block">
-                  <span>{item.product}</span>
+                  <span>{item.date}</span>
                   <span className="text-gray-500">{item.type}</span>
                 </div>
               </td>
-              <td>موجود در انبار : {item.inventory}</td>
-              <td>{item.color}</td>
+              <td>{item.customer}</td>
+              <td>
+                <span
+                  className={`
+                  ${item.paymentStatus === "Refunded" ? "bg-blue-500" : ""} 
+                  ${item.paymentStatus === "Pending" ? "bg-purple-500" : ""} 
+                  ${item.paymentStatus === "Paid" ? "bg-green-500" : ""} 
+                  ${item.paymentStatus === "Failed" ? "bg-gray-500" : ""} 
+                  px-1 rounded-sm text-white pt-0.5 text-xs`}
+                >
+                  {item.paymentStatus}
+                </span>
+              </td>
+              <td>
+                <span
+                  className={`${item.orderStatus === "Delivered" ? "bg-blue-500" : ""} 
+                  ${item.orderStatus === "Canceled" ? "bg-red-500" : ""} 
+                  ${item.orderStatus === "Processing" ? "bg-amber-500" : ""} 
+                  ${item.orderStatus === "Shipped" ? "bg-purple-500" : ""} 
+                  ${item.orderStatus === "Returned" ? "bg-gray-500" : ""} 
+                  px-1 rounded-sm text-white pt-0.5 text-xs`}
+                >
+                  {item.orderStatus}
+                </span>
+              </td>
               <td>{item.price}</td>
-              <td>{item.rating}</td>
               <td className="flex space-x-2">
                 <button
                   onClick={() => handleEditClick(item.id)} // با کلیک، id آیتم ارسال می‌شود
@@ -61,7 +82,7 @@ function DynamicTable({ columns, data, setData, onDelete }) {
         setModal={setModal}
         id={selectedItemId}
         data={data}
-        setData={setData}
+        setOrders={setData}
       />
     </>
   );

@@ -1,54 +1,49 @@
 import React, { useState, useEffect } from "react";
 import { RiCloseLine } from "react-icons/ri";
 
-function EditProductModal({ modal, setModal, id, data, setProducts }) {
-  const [title, setTitle] = useState("");
-  const [count, setCount] = useState("");
-  const [color, setColor] = useState("");
+function EditOrderModal({ modal, setModal, id, data, setOrders }) {
+  const [date, setDate] = useState("");
+  const [customer, setCustomer] = useState("");
+  const [paymentStatus, setPaymentStatus] = useState("");
+  const [orderStatus, setOrderStatus] = useState("");
   const [price, setPrice] = useState("");
-  const [type, setType] = useState("");
-  const [rating, setRating] = useState("");
 
   useEffect(() => {
     if (id && data) {
-      const productToEdit = data.find((item) => item.id === id);
+      const orderToEdit = data.find((item) => item.id === id);
 
-      if (productToEdit) {
-        setTitle(productToEdit.product);
-        setCount(productToEdit.inventory);
-        setColor(productToEdit.color);
-        setPrice(productToEdit.price);
-        setType(productToEdit.type);
-        setRating(productToEdit.rating);
+      if (orderToEdit) {
+        setDate(orderToEdit.date);
+        setCustomer(orderToEdit.customer);
+        setPaymentStatus(orderToEdit.paymentStatus);
+        setOrderStatus(orderToEdit.orderStatus);
+        setPrice(orderToEdit.price);
       }
     }
 
     if (!modal) {
-      setTitle("");
-      setCount("");
-      setColor("");
+      setDate("");
+      setCustomer("");
+      setPaymentStatus("");
+      setOrderStatus("");
       setPrice("");
-      setType("");
-      setRating("");
     }
   }, [id, modal, data]);
 
   const handleSaveClick = () => {
-    const updatedProduct = {
-      id: id,
-      product: title,
-      inventory: count,
-      color: color,
-      price: price,
-      type: type,
-      rating: rating,
+    const updatedOrder = {
+      id,
+      date,
+      customer,
+      paymentStatus,
+      orderStatus,
+      price,
+      action: "View",
     };
 
-    if (setProducts) {
-      setProducts((prevProducts) =>
-        prevProducts.map((product) =>
-          product.id === id ? updatedProduct : product,
-        ),
+    if (setOrders) {
+      setOrders((prevOrders) =>
+        prevOrders.map((order) => (order.id === id ? updatedOrder : order)),
       );
     }
 
@@ -57,7 +52,9 @@ function EditProductModal({ modal, setModal, id, data, setProducts }) {
 
   return (
     <div
-      className={`bg-black/50 w-full h-full fixed top-13.5 left-0 z-10 ${modal ? "inline" : "hidden"} p-4`}
+      className={`bg-black/50 w-full h-full fixed top-13.5 left-0 z-10 ${
+        modal ? "inline" : "hidden"
+      } p-4`}
     >
       <div className="space-y-2 mt-5 w-120 max-w-full h-fit bg-white mx-auto rounded-lg p-5 relative">
         <div
@@ -68,88 +65,74 @@ function EditProductModal({ modal, setModal, id, data, setProducts }) {
         </div>
 
         <h2 className="font-MorabbaMedium border-x-4 border-gray-900 text-center mb-5 p-2">
-          ویرایش محصول
+          ویرایش سفارش
         </h2>
 
-        <div className="flex gap-2">
-          <div className="w-full">
-            <div className="space-y-1">
-              <span className="text-gray-500 font-MorabbaLight block">
-                عنوان
-              </span>
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="عنوان را وارد کنید..."
-                className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
-              />
-            </div>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-1">
+            <span className="text-gray-500 font-MorabbaLight block">تاریخ</span>
 
-            <div className="space-y-1">
-              <span className="text-gray-500 font-MorabbaLight block">
-                تعداد
-              </span>
-              <input
-                type="text"
-                value={count}
-                onChange={(e) => setCount(e.target.value)}
-                placeholder="تعداد را وارد کنید..."
-                className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
-              />
-            </div>
-
-            <div className="space-y-1">
-              <span className="text-gray-500 font-MorabbaLight block">رنگ</span>
-              <input
-                type="text"
-                value={color}
-                onChange={(e) => setColor(e.target.value)}
-                placeholder="رنگ را وارد کنید..."
-                className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
-              />
-            </div>
+            <input
+              type="text"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              placeholder="تاریخ را وارد کنید..."
+              className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
+            />
           </div>
 
-          <div className="w-full">
-            <div className="space-y-1">
-              <span className="text-gray-500 font-MorabbaLight block">
-                قیمت
-              </span>
-              <input
-                type="text"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                placeholder="قیمت را وارد کنید..."
-                className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
-              />
-            </div>
+          <div className="space-y-1">
+            <span className="text-gray-500 font-MorabbaLight block">
+              نام مشتری
+            </span>
 
-            <div className="space-y-1">
-              <span className="text-gray-500 font-MorabbaLight block">
-                قیمت
-              </span>
-              <input
-                type="text"
-                value={type}
-                onChange={(e) => setType(e.target.value)}
-                placeholder="تایپ را وارد کنید..."
-                className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
-              />
-            </div>
+            <input
+              type="text"
+              value={customer}
+              onChange={(e) => setCustomer(e.target.value)}
+              placeholder="نام مشتری را وارد کنید..."
+              className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
+            />
+          </div>
 
-            <div className="space-y-1">
-              <span className="text-gray-500 font-MorabbaLight block">
-                قیمت
-              </span>
-              <input
-                type="text"
-                value={rating}
-                onChange={(e) => setRating(e.target.value)}
-                placeholder="امتیاز را وارد کنید..."
-                className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
-              />
-            </div>
+          <div className="space-y-1">
+            <span className="text-gray-500 font-MorabbaLight block">
+              وضعیت پرداخت
+            </span>
+
+            <input
+              type="text"
+              value={paymentStatus}
+              onChange={(e) => setPaymentStatus(e.target.value)}
+              placeholder="وضعیت پرداخت را وارد کنید..."
+              className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
+            />
+          </div>
+
+          <div className="space-y-1">
+            <span className="text-gray-500 font-MorabbaLight block">
+              وضعیت سفارش
+            </span>
+
+            <input
+              type="text"
+              value={orderStatus}
+              onChange={(e) => setOrderStatus(e.target.value)}
+              placeholder="وضعیت سفارش را وارد کنید..."
+              className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
+            />
+          </div>
+
+          <div className="space-y-1 col-span-2">
+            <span className="text-gray-500 font-MorabbaLight block">مبلغ</span>
+
+            <input
+              type="text"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              placeholder="مبلغ را وارد کنید..."
+              className="border border-blue-200 p-2 rounded-sm w-full text-sm hover:bg-blue-50 hover:border-blue-300 outline-0"
+            />
           </div>
         </div>
 
@@ -164,4 +147,4 @@ function EditProductModal({ modal, setModal, id, data, setProducts }) {
   );
 }
 
-export default EditProductModal;
+export default EditOrderModal;

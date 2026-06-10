@@ -1,12 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import DynamicTable from "./components/DynamicTable";
 import { RiSearch2Line } from "react-icons/ri";
-import productsData from "../../Data/productsData";
+import ordersData from "../../Data/ordersData";
 
 function Orders() {
-  const [products, setProducts] = useState(productsData);
-  const [searchInput, setSearchInput] = useState(""); // متن داخل input
+  const [orders, setOrders] = useState(ordersData);
+  const [searchInput, setSearchInput] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8);
 
@@ -19,33 +19,43 @@ function Orders() {
     { id: "price", title: "مبلغ" },
     { id: "action", title: "اکشن" },
   ];
+
+  // سرچ
   const filteredData = (() => {
     const term = searchInput.trim().toLowerCase();
-    if (!term) return products;
-    return products.filter((p) => p.product.toLowerCase().includes(term));
+
+    if (!term) return orders;
+
+    return orders.filter((item) => item.customer.toLowerCase().includes(term));
   })();
 
+  // pagination
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
-  // توابع صفحه‌بندی
+  // next page
   const handleNextPage = () => {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   };
 
+  // prev page
   const handlePrevPage = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 1));
   };
 
+  // change page
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
+  // generate buttons
   const generatePageButtons = () => {
     const buttons = [];
+
     for (let i = 1; i <= totalPages; i++) {
       buttons.push(
         <button
@@ -59,11 +69,13 @@ function Orders() {
         </button>,
       );
     }
+
     return buttons;
   };
 
+  // delete order
   const deleteProduct = (id) => {
-    setProducts((prev) => prev.filter((item) => item.id !== id));
+    setOrders((prev) => prev.filter((item) => item.id !== id));
   };
 
   return (
@@ -77,38 +89,42 @@ function Orders() {
               <span className="text-gray-500">
                 <RiSearch2Line />
               </span>
+
               <input
                 type="text"
                 placeholder="جستجو..."
                 className="outline-0 text-sm"
                 value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    setSubmittedTerm(searchInput); // اعمال جستجو
-                    setCurrentPage(1); // برگشت به صفحه ۱
-                  }
+                onChange={(e) => {
+                  setSearchInput(e.target.value);
+                  setCurrentPage(1);
                 }}
               />
             </label>
 
             <h3 className="font-MorabbaMedium">
-              تعداد محصولات : {products.length}
+              تعداد سفارشات : {orders.length}
             </h3>
           </div>
+
           <DynamicTable
             columns={columns}
             data={currentItems}
-            setData={setProducts}
+            allData={orders}
+            setData={setOrders}
             onDelete={deleteProduct}
           />
 
-          {/* کنترل‌های Pagination */}
+          {/* Pagination */}
           <div className="flex justify-center mt-4 space-x-2 pb-5">
             <button
               onClick={handlePrevPage}
               disabled={currentPage === 1}
-              className={`px-3 py-1 rounded ${currentPage === 1 ? "bg-gray-300 cursor-not-allowed" : "bg-blue-500 text-white cursor-pointer"}`}
+              className={`px-3 py-1 rounded ${
+                currentPage === 1
+                  ? "bg-gray-300 cursor-not-allowed"
+                  : "bg-blue-500 text-white cursor-pointer"
+              }`}
             >
               قبلی
             </button>
@@ -118,7 +134,11 @@ function Orders() {
             <button
               onClick={handleNextPage}
               disabled={currentPage === totalPages}
-              className={`px-3 py-1 rounded ${currentPage === totalPages ? "bg-gray-300 cursor-not-allowed" : "bg-blue-500 text-white cursor-pointer"}`}
+              className={`px-3 py-1 rounded ${
+                currentPage === totalPages
+                  ? "bg-gray-300 cursor-not-allowed"
+                  : "bg-blue-500 text-white cursor-pointer"
+              }`}
             >
               بعدی
             </button>
