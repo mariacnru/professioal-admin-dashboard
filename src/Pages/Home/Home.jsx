@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import LastProducts from "./components/LastProducts";
 import LastUsers from "./components/LastUsers";
 import { NavLink } from "react-router";
+import Chart_1 from "./components/Chart_1";
 
 function Home() {
   const card = [
@@ -41,6 +42,8 @@ function Home() {
           <Card key={item.id} {...item} />
         ))}
       </div>
+
+      <Chart_1 />
 
       <div className="lg:flex *:h-102 gap-5 w-full space-y-5 mt-5">
         <div className="bg-white p-5 rounded-md grow">
