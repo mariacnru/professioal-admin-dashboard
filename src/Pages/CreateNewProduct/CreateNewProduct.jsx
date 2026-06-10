@@ -9,8 +9,6 @@ function CreateNewProduct() {
   // This function will be passed down to Information
   const handleAddProduct = (productToAdd) => {
     setProducts((prevProducts) => [...prevProducts, productToAdd]);
-    console.log("Product added to state:", productToAdd);
-    console.log("Current products list:", [...products, productToAdd]);
   };
 
   return (

@@ -1,28 +1,19 @@
-import React, { useState } from "react"; // وارد کردن React و useState
-import Categories from "../../../Data/Categories"; // وارد کردن داده‌های دسته‌بندی‌ها
+import React, { useState } from "react";
+import Categories from "../../../Data/Categories";
 
 function NewProductsCategories() {
-  const [selected, setSelected] = useState({});
+  const [selected, setSelected] = useState([]);
 
   const handleCheckboxChange = (event) => {
-    const { value, checked } = event.target; // دریافت مقدار (عنوان دسته‌بندی) و وضعیت (true/false)
+    const { value, checked } = event.target;
 
-    // به‌روزرسانی state 'selected'
-    setSelected((prevSelected) => {
-      // ایجاد یک کپی از state قبلی برای جلوگیری از تغییر مستقیم
-      const newState = { ...prevSelected };
-
+    setSelected((prev) => {
       if (checked) {
-        // اگر چک‌باکس انتخاب شده، عنوان دسته‌بندی را به state اضافه می‌کنیم
-        newState[value] = true;
+        return [...prev, value];
       } else {
-        // اگر از حالت انتخاب خارج شد، عنوان دسته‌بندی را از state حذف می‌کنیم
-        delete newState[value];
+        return prev.filter((item) => item !== value);
       }
-      return newState; // برگرداندن state جدید
     });
-
-    console.log(selected);
   };
 
   return (
@@ -34,9 +25,9 @@ function NewProductsCategories() {
         >
           <input
             type="checkbox"
-            checked={!!selected[item.title]}
-            onChange={handleCheckboxChange}
             value={item.title}
+            checked={selected.includes(item.title)}
+            onChange={handleCheckboxChange}
             className="accent-blue-500"
           />
           {item.title}

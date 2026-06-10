@@ -44,16 +44,10 @@ body::selection {
 }
 
 @theme {
-  --color-brown-100: #ece0d1;
-  --color-brown-300: #dbc1ac;
-  --color-brown-600: #967259;
-  --color-brown-900: #624823;
   --color-green-btn: #0f948a;
   --color-deep-blue: #1e2753;
 
   --shdow-normal: 0px 1px 10px rgba(0, 0, 0, 0.05);
-
-  --radius-4xl: 2rem;
 
   --font-Dana: "Dana";
   --font-DanaMedium: "Dana Medium";
@@ -61,10 +55,6 @@ body::selection {
   --font-MorabbaLight: "Morabba Light";
   --font-MorabbaMedium: "Morabba Medium";
   --font-MorabbaBold: "Morabba Bold";
-
-  --tracking-tightest: -0.065rem;
-
-  --breakpoints-xs: 480px;
 }
 
 .sidebar {

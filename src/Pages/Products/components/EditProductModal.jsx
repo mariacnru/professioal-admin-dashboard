@@ -51,7 +51,6 @@ function EditProductModal({ modal, setModal, id, data, setProducts }) {
         ),
       );
     }
-    console.log(updatedProduct);
 
     setModal(false);
   };

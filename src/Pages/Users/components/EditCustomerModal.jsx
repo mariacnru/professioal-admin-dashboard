@@ -11,8 +11,6 @@ function EditCustomerModal({ modal, setModal, id, data, setData }) {
     if (id && data) {
       const customerToEdit = data.find((item) => item.id === id);
 
-      console.log(customerToEdit);
-
       if (customerToEdit) {
         setName(customerToEdit.name);
         setLocation(customerToEdit.location);

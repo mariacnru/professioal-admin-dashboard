@@ -37,21 +37,18 @@ function DynamicTable({ col, customers, onDlete, data, setCustomers }) {
               <td>{item.location}</td>
               <td>{item.orders}</td>
               <td>{item.spent.toLocaleString()}</td>
-              <td className="space-x-2">
+              <td className="flex space-x-2">
                 <button
-                  onClick={() => {
-                    handleEditClick(item.id);
-                    console.log(item.id);
-                  }}
-                  className="text-blue-500 border border-gray-300 hover:bg-gray-100 p-2 rounded-sm transition-colors cursor-pointer"
+                  onClick={() => handleEditClick(item.id)} // با کلیک، id آیتم ارسال می‌شود
+                  className="flex items-center gap-2 text-xs text-blue-500 border border-gray-300 hover:bg-gray-100 p-2 rounded-sm transition-colors cursor-pointer"
                 >
-                  <RiEditLine />
+                  ادیت <RiEditLine />
                 </button>
                 <button
-                  onClick={() => onDlete(item.id)}
-                  className="text-blue-500 border border-gray-300 hover:bg-gray-100 p-2 rounded-sm transition-colors cursor-pointer"
+                  onClick={() => onDelete(item.id)}
+                  className="flex items-center gap-2 text-xs text-blue-500 border border-gray-300 hover:bg-gray-100 p-2 rounded-sm transition-colors cursor-pointer"
                 >
-                  <RiDeleteBinLine />
+                  حذف <RiDeleteBinLine />
                 </button>
               </td>
             </tr>

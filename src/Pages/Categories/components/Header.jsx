@@ -7,7 +7,7 @@ function Header({ handleScroll }) {
       <div className="space-x-5">
         <button
           onClick={handleScroll}
-          className="bg-blue-500 text-white py-1.5 px-2 text-sm rounded-sm hover:shadow-lg shadow-blue-200 transition-shadow cursor-pointer"
+          className="bg-slate-800 text-white py-1.5 px-2 text-sm rounded-sm hover:shadow-lg shadow-blue-200 transition-shadow cursor-pointer"
         >
           + اضافه کردن دسته بندی
         </button>

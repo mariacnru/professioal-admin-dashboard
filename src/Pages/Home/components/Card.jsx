@@ -8,7 +8,7 @@ function Card({ title, total, totalTitle, increase, lastSevenDays }) {
       <div className="flex justify-between items-center border-b border-gray-200 pb-5">
         <div>
           <span className="font-MorabbaMedium block">{title}</span>
-          <span className="text-gray-400 text-sm">7 روز گذشته</span>
+          <span className="text-gray-500 text-sm">7 روز گذشته</span>
         </div>
 
         <div>
@@ -35,7 +35,7 @@ function Card({ title, total, totalTitle, increase, lastSevenDays }) {
           {total.toLocaleString()}
         </span>
         <span className="text-sm">{totalTitle}</span>
-        <span className="text-green-400 flex gap-1 text-sm">
+        <span className="text-green-500 flex gap-1 text-sm">
           {increase}%
           <RiArrowUpLine />
         </span>

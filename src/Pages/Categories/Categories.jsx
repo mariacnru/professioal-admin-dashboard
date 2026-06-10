@@ -18,7 +18,6 @@ function Categories() {
   };
 
   const deleteHandler = (id) => {
-    console.log(id);
 
     setCategoriesData((prevData) => prevData.filter((item) => item.id !== id));
   };
@@ -34,7 +33,6 @@ function Categories() {
     setCatTitle("");
     setItemCount("");
 
-    console.log(newCat);
   };
 
   return (
@@ -58,22 +56,29 @@ function Categories() {
         <div className="w-120">
           <div className="bg-white rounded-md p-5">
             <h4 className="font-MorabbaMedium mb-5">اطلاعات دسته بندی</h4>
+            <div>
+              <label htmlFor="catTitle" className="text-sm text-gray-500">
+                اسم دسته بندی
+              </label>
+              <input
+                id="catTitle"
+                value={catTitle}
+                onChange={(e) => setCatTitle(e.target.value)}
+                type="text"
+                className="border border-gray-400 w-full p-1 rounded-md mb-2 focus:shadow-lg outline-0 hover:border-gray-700 transition"
+              />
 
-            <span className="text-sm text-gray-500">اسم دسته بندی</span>
-            <input
-              value={catTitle}
-              onChange={(e) => setCatTitle(e.target.value)}
-              type="text"
-              className="border border-gray-400 w-full p-1 rounded-md mb-2 focus:shadow-lg run xl outline-0 hover:border-gray-700 transition cursor-pointer"
-            />
-
-            <span className="text-sm text-gray-500">تعداد</span>
-            <input
-              value={itemCount}
-              onChange={(e) => setItemCount(e.target.value)}
-              type="text"
-              className="border border-gray-400 w-full p-1 rounded-md mb-8 focus:shadow-lg run xl outline-0 hover:border-gray-700 transition cursor-pointer"
-            />
+              <label htmlFor="itemCount" className="text-sm text-gray-500">
+                تعداد
+              </label>
+              <input
+                id="itemCount"
+                value={itemCount}
+                onChange={(e) => setItemCount(e.target.value)}
+                type="text"
+                className="border border-gray-400 w-full p-1 rounded-md mb-8 focus:shadow-lg outline-0 hover:border-gray-700 transition"
+              />
+            </div>
 
             <span className="text-sm text-gray-500">عکس</span>
             <div className="flex flex-col items-center justify-center gap-3 border-2 border-dashed border-gray-300 rounded-md p-6 hover:border-gray-700 transition cursor-pointer">
