@@ -5,8 +5,8 @@ function LastProducts() {
   const [products, setProducts] = useState(productsData.slice(-5));
   return (
     <table className="w-full text-sm">
-      <thead className="bg-green-100">
-        <tr className="*:p-3 *:text-gray-500 *:text-sm">
+      <thead className="bg-blue-400">
+        <tr className="*:p-3 *:text-white *:text-sm">
           <td>آیدی</td>
           <td>محصول</td>
           <td>رنگ</td>
@@ -21,7 +21,7 @@ function LastProducts() {
             <td className="font-MorabbaMedium">{item.product}</td>
             <td>{item.color}</td>
             <td
-              className={`${item.price > 1000000 ? "text-red-500" : "text-green-500"}`}
+              className={`${item.price > 1000000 ? "text-red-500" : "text-blue-500"}`}
             >
               {item.price}
             </td>

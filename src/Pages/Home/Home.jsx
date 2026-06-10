@@ -5,6 +5,7 @@ import LastProducts from "./components/LastProducts";
 import LastUsers from "./components/LastUsers";
 import { NavLink } from "react-router";
 import Chart_1 from "./components/Chart_1";
+import Chart_2 from "./components/Cart_2";
 
 function Home() {
   const card = [
@@ -43,15 +44,18 @@ function Home() {
         ))}
       </div>
 
-      <Chart_1 />
+      <div className="flex flex-wrap lg:flex-nowrap gap-5">
+        <Chart_1 />
+        <Chart_2 />
+      </div>
 
-      <div className="lg:flex *:h-102 gap-5 w-full space-y-5 mt-5">
+      <div className="lg:flex *:h-102 gap-5 w-full space-y-5 mt-10">
         <div className="bg-white p-5 rounded-md grow">
           <div className="flex justify-between">
             <h3 className="font-MorabbaMedium mb-5">آخرین محصولات اضافه شده</h3>
             <NavLink
               to={"products"}
-              className="underline text-sm text-green-500"
+              className="underline text-sm text-blue-500"
             >
               مشاهده همه محصولات
             </NavLink>
@@ -61,7 +65,7 @@ function Home() {
         <div className="bg-white p-5 rounded-md">
           <div className="flex justify-between">
             <h3 className="font-MorabbaMedium mb-5">آخرین کاربران اضافه شده</h3>
-            <NavLink to={"users"} className="underline text-sm text-green-500">
+            <NavLink to={"users"} className="underline text-sm text-blue-500">
               مشاهده همه کاربران
             </NavLink>
           </div>

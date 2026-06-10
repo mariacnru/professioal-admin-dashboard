@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
-function Chart_1() {
+function Chart_2() {
   const [state, setState] = useState({
     series: [
       {
         name: "فروش",
-        data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2],
+        data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 5.4, 2.8, 6.1, 4.7, 3.9],
       },
     ],
     options: {
@@ -40,7 +40,20 @@ function Chart_1() {
       },
 
       xaxis: {
-        categories: ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+        categories: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ],
 
         position: "top",
 
@@ -90,10 +103,8 @@ function Chart_1() {
   });
 
   return (
-    <div className="grow sm:w-95 bg-white mt-10 rounded-md shadow-lg shadow-gray-200 p-5 font-Dana">
-      <h3 className="font-semibold text-sm text-gray-700 mb-5">
-        فروش 7 روز گذشته
-      </h3>
+    <div className="grow w-full bg-white mt-10 rounded-md shadow-lg shadow-gray-200 p-5 font-Dana">
+      <h3 className="font-semibold text-sm text-gray-700 mb-5">فروش سالانه</h3>
       <div id="chart">
         <ReactApexChart
           options={state.options}
@@ -106,4 +117,4 @@ function Chart_1() {
   );
 }
 
-export default Chart_1;
+export default Chart_2;

@@ -5,8 +5,8 @@ function LastUsers() {
   const [products, setProducts] = useState(usersData.slice(-5));
   return (
     <table className="w-full lg:w-100 text-sm">
-      <thead className="bg-green-100">
-        <tr className="*:p-3 *:text-gray-500 *:text-sm">
+      <thead className="bg-blue-400">
+        <tr className="*:p-3 *:text-white *:text-sm">
           <td>آیدی</td>
           <td>اسم</td>
           <td>لوکیشن</td>
