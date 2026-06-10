@@ -6,6 +6,7 @@ import Users from "./Pages/Users/Users";
 import Categiries from "./Pages/Categories/Categories";
 import NotFoundPage from "./Pages/NotFoundPage/NotFoundPage";
 import CreateNewProduct from "./Pages/CreateNewProduct/CreateNewProduct";
+import Orders from "./Pages/Orders/Orders";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
       { path: "products", element: <Products /> },
       { path: "categiries", element: <Categiries /> },
       { path: "createNewProduct", element: <CreateNewProduct /> },
+      { path: "orders", element: <Orders /> },
     ],
   },
   { path: "*", element: <NotFoundPage /> },
