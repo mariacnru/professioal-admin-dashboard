@@ -1,18 +1,27 @@
-# React + Vite
+# Admin Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and responsive Admin Dashboard built with React.js, designed to provide an efficient and user-friendly interface for managing and monitoring application data.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* Dynamic data tables with clean and organized layouts
+* Create, Read, Update, and Delete (CRUD) operations
+* Interactive modal dialogs for editing and deleting records
+* Responsive design optimized for desktop, tablet, and mobile devices
+* Reusable and maintainable React components
+* State management using React Hooks
+* Modern UI built with Tailwind CSS
+* Order, product, and customer management views
+* Scalable project structure for future enhancements
+* Smooth user experience with intuitive navigation
 
-## React Compiler
+## Technologies Used
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+* React.js
+* JavaScript (ES6+)
+* React Router
+* Tailwind CSS
+* React Icons
+* Vite
 
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project demonstrates the development of a real-world administrative dashboard with a focus on performance, scalability, and maintainable front-end architecture. It can be easily integrated with REST APIs or backend services for production use.
