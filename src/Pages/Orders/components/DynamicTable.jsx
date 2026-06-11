@@ -1,10 +1,13 @@
 import React, { useState } from "react"; // useState را import کنید
 import { RiDeleteBinLine, RiEditLine } from "react-icons/ri";
 import EditOrderModal from "./EditOrderModal";
+import DeleteModal from "./DeleteModal";
 
 function DynamicTable({ columns, data, allData, setData, onDelete }) {
   const [modal, setModal] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
+  const [deleteId, setDeleteId] = useState(null);
+  const [flag, setFlag] = useState(false);
 
   const handleEditClick = (itemId) => {
     setModal(true);
@@ -12,7 +15,7 @@ function DynamicTable({ columns, data, allData, setData, onDelete }) {
   };
 
   return (
-    <>
+    <div className="relative">
       <table className="w-full *:text-sm">
         <thead>
           <tr className="*:p-5 *:text-start *:text-gray-500 border-b-2 border-gray-200">
@@ -66,7 +69,10 @@ function DynamicTable({ columns, data, allData, setData, onDelete }) {
                   ادیت <RiEditLine />
                 </button>
                 <button
-                  onClick={() => onDelete(item.id)}
+                  onClick={() => {
+                    setDeleteId(item.id);
+                    setFlag(true);
+                  }}
                   className="flex items-center gap-2 text-xs text-blue-500 border border-gray-300 hover:bg-gray-100 p-2 rounded-sm transition-colors cursor-pointer"
                 >
                   حذف <RiDeleteBinLine />
@@ -76,7 +82,6 @@ function DynamicTable({ columns, data, allData, setData, onDelete }) {
           ))}
         </tbody>
       </table>
-
       <EditOrderModal
         modal={modal}
         setModal={setModal}
@@ -84,7 +89,13 @@ function DynamicTable({ columns, data, allData, setData, onDelete }) {
         data={data}
         setOrders={setData}
       />
-    </>
+      <DeleteModal
+        flag={flag}
+        setFlag={setFlag}
+        deleteId={deleteId}
+        onDelete={onDelete}
+      />
+    </div>
   );
 }
 
