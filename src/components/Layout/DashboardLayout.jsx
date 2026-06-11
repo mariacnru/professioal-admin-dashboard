@@ -19,6 +19,9 @@ function DashboardLayout() {
         <main className="w-full">
           <Outlet />
         </main>
+        <div className="text-sm text-center bg-white p-2">
+          <p>توسعه داده شده توسط مریم احمدآبادی 2026</p>
+        </div>
       </section>
     </div>
   );
