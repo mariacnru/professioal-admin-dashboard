@@ -14,7 +14,7 @@ const sidebarData = [
   { id: 1, title: "داشبورد", icon: RiHome2Line, to: "/" },
   { id: 2, title: "سفارشات", icon: RiShoppingBag3Line, to: "orders" },
   { id: 3, title: "محصولات", icon: RiProductHuntLine, to: "products" },
-  { id: 4, title: "کتگوری ها", icon: RiListCheck, to: "categiries" },
+  { id: 4, title: "دسته بندی ها", icon: RiListCheck, to: "categiries" },
   { id: 5, title: "مشتری ها", icon: RiUserLine, to: "users" },
   { id: 9, title: "اضافه کردن محصول", icon: RiAddLine, to: "createNewProduct" },
 ];
