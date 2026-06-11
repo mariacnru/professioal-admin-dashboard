@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { RiDeleteBinLine, RiEditLine } from "react-icons/ri";
 import EditCustomerModal from "./EditCustomerModal";
+import DeleteModal from "./DeleteModal";
 
-function DynamicTable({ col, customers, onDlete, data, setCustomers }) {
+function DynamicTable({ col, customers, onDelete, data, setCustomers }) {
   const [modal, setModal] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const [deleteId, setDeleteId] = useState(null);
+  const [flag, setFlag] = useState(false);
 
   const handleEditClick = (itemId) => {
     setModal(true);
@@ -45,7 +48,10 @@ function DynamicTable({ col, customers, onDlete, data, setCustomers }) {
                   ادیت <RiEditLine />
                 </button>
                 <button
-                  onClick={() => onDelete(item.id)}
+                  onClick={() => {
+                    setDeleteId(item.id);
+                    setFlag(true);
+                  }}
                   className="flex items-center gap-2 text-xs text-blue-500 border border-gray-300 hover:bg-gray-100 p-2 rounded-sm transition-colors cursor-pointer"
                 >
                   حذف <RiDeleteBinLine />
@@ -55,13 +61,19 @@ function DynamicTable({ col, customers, onDlete, data, setCustomers }) {
           ))}
         </tbody>
       </table>
-
       <EditCustomerModal
         modal={modal}
         setModal={setModal}
         id={selectedCustomer}
         data={data}
         setData={setCustomers}
+      />
+
+      <DeleteModal
+        flag={flag}
+        setFlag={setFlag}
+        deleteId={deleteId}
+        onDelete={onDelete}
       />
     </>
   );

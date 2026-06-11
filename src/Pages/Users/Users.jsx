@@ -74,7 +74,7 @@ function Users() {
           <DynamicTable
             col={col}
             customers={currentItems}
-            onDlete={deleteCustomer}
+            onDelete={deleteCustomer}
             data={customers}
             setCustomers={setCustomers}
           />
