@@ -26,4 +26,6 @@ A modern and responsive Admin Dashboard built with React.js, designed to provide
 
 This project demonstrates the development of a real-world administrative dashboard with a focus on performance, scalability, and maintainable front-end architecture. It can be easily integrated with REST APIs or backend services for production use.
 
+🔗 Live Demo: [View Live Demo](https://mariacnru.github.io/professioal-admin-dashboard/)
+
 ![Preview](/public/localhost_5173_.png)
