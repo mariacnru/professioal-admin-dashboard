@@ -9,6 +9,7 @@ function CreateNewProduct() {
   // This function will be passed down to Information
   const handleAddProduct = (productToAdd) => {
     setProducts((prevProducts) => [...prevProducts, productToAdd]);
+    alert("محصول اضافه شد")
   };
 
   return (
