@@ -2,6 +2,9 @@
 
 A modern and responsive Admin Dashboard built with React.js, designed to provide an efficient and user-friendly interface for managing and monitoring application data.
 
+
+«داده‌ها به صورت عمدی local نگه داشته شدن تا دمو همیشه در وضعیت اولیه باشه. اتصال به Firebase Firestore در نسخه production قابل پیاده‌سازیه.»
+
 ## Features
 
 - Dynamic data tables with clean and organized layouts
